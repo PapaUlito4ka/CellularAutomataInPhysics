@@ -1,14 +1,16 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Grid.hpp"
 
 // Application of water simulation
 
 class WaterAutomata {
 public:
     
+    WaterAutomata (Grid&);
+    
     // Required methods
-    int GetSpeed();
     void Move(); // Movement method.
     void Tick(); // Update method.
     void Render(sf::RenderWindow& l_window);
@@ -17,6 +19,7 @@ public:
     // . . .
     
 private:
-    // To do: neccessary methods
+    // To do: neccessary fields
     // . . .
+    Grid grid;
 };

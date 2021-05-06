@@ -1,10 +1,17 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
+#include "Game.hpp"
 
-using namespace std;
 
-int main() {
+int main () {
+    Game game;
     
-    cout << endl;
+    while (!game.GetWindow()->IsDone()) {
+        game.HandleInput();
+        game.Update();
+        game.Render();
+        game.RestartClock();
+    }
+    
+    std::cout << std::endl;
     return 0;
 }

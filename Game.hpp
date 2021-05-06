@@ -2,9 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "WaterAutomata.hpp"
-#include "DiffusionAutomata.cpp"
-#include "World.hpp"
 #include "Window.hpp"
+#include "Grid.hpp"
 
 class Game {
 public:
@@ -15,6 +14,7 @@ public:
     void HandleInput();
     void Update();
     void Render();
+    int GetSpeed();
     
     Window* GetWindow();
     sf::Time GetElapsed();
@@ -22,13 +22,13 @@ public:
     void RestartClock();
     
 private:
-    sf::Clock m_clock;
-    float m_elapsed;
+    sf::Clock clock;
+    float elapsed;
+    int speed;
     
-    Window m_window;
-    World m_world;
+    Window window;
+    Grid grid;
     WaterAutomata water_automata;
-    DiffusionAutomata diffusion_automata;
 };
 
 
