@@ -22,7 +22,7 @@ sf::Vector2<int> Grid::GridSize() {
 }
 
 void Grid::Update() {
-    
+
 }
 
 void Grid::DrawMouse(sf::RenderWindow& window, sf::Mouse::Button button) {
@@ -30,31 +30,36 @@ void Grid::DrawMouse(sf::RenderWindow& window, sf::Mouse::Button button) {
     int y = sf::Mouse::getPosition(window).y;
     if (button == sf::Mouse::Right) {
         grid[y / cellSize][x / cellSize].type = CellType::WATER;
+        grid[y / cellSize][x / cellSize].cnt=50;
     }
     if (button == sf::Mouse::Left) {
         grid[y / cellSize][x / cellSize].type = CellType::GROUND;
+        grid[y / cellSize][x / cellSize].cnt=101;
     }
 }
 
 void Grid::Render(sf::RenderWindow& window) {
     for (int i = 0; i < grid.size(); i++) {
         for (int j = 0; j < grid[0].size(); j++) {
-            
+
             if (grid[i][j].type == CellType::AIR) {
                 cellTexture.setFillColor(sf::Color::White);
             }
-            
+
             if (grid[i][j].type == CellType::WATER) {
-                cellTexture.setFillColor(sf::Color::Blue);
+
+                cellTexture.setFillColor(sf::Color(0,0,255));
+                cellTexture.setOutlineThickness(-4*(100-grid[i][j].cnt)/100.0);
             }
-            
+
             if (grid[i][j].type == CellType::GROUND) {
                 cellTexture.setFillColor(sf::Color::Black);
+                cellTexture.setOutlineThickness(0);
             }
-            
+
             cellTexture.setPosition(grid[i][j].coords.x, grid[i][j].coords.y);
             window.draw(cellTexture);
-            
+
         }
     }
 }

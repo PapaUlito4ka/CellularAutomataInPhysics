@@ -1,14 +1,14 @@
 #include "Game.hpp"
 
 Game::Game() :
-    window("Physics", sf::Vector2u(1000, 1000)),
-    grid(sf::Vector2<int>(1000, 1000)),
+    window("Physics", sf::Vector2u(800, 800)),
+    grid(sf::Vector2<int>(800, 800)),
     water_automata(grid)
 {
     srand((unsigned int)time(0));
     clock.restart();
     elapsed = 0.0f;
-    speed = 40;
+    speed = 60;
 }
 
 Game::~Game() {}

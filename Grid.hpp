@@ -13,6 +13,7 @@ enum class CellType {
 
 struct Cell {
     sf::Vector2<int> coords;
+    int cnt=0;
     CellType type;
     int pressure;
 };
@@ -22,14 +23,14 @@ using Matrix = std::vector<std::vector<Cell>>;
 struct Grid {
     Grid();
     Grid(sf::Vector2<int> gridSize);
-    
+
     ~Grid();
-    
+
     sf::Vector2<int> GridSize();
     void DrawMouse(sf::RenderWindow&, sf::Mouse::Button);
     void Update();
     void Render(sf::RenderWindow&);
-    
+
     std::vector<Cell>& operator[](int);
 
 private:
