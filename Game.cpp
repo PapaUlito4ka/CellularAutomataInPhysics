@@ -8,7 +8,7 @@ Game::Game() :
     srand((unsigned int)time(0));
     clock.restart();
     elapsed = 0.0f;
-    speed = 20;
+    speed = 40;
 }
 
 Game::~Game() {}
