@@ -1,9 +1,11 @@
 #include "Grid.hpp"
 
+Grid::Grid() {}
+
 Grid::Grid(sf::Vector2<int> gridSize) {
     cellSize = 10;
-    gridSize = sf::Vector2<int>(gridSize.x / cellSize, gridSize.y / cellSize);
-    grid = std::vector<std::vector<Cell>>(gridSize.y, std::vector<Cell>(gridSize.x));
+    this->gridSize = sf::Vector2<int>(gridSize.x / cellSize, gridSize.y / cellSize);
+    grid = std::vector<std::vector<Cell>>(this->gridSize.y, std::vector<Cell>(this->gridSize.x));
     for (int i = 0; i < grid.size(); i++) {
         for (int j = 0; j < grid[0].size(); j++) {
             grid[i][j].coords = { j * cellSize, i * cellSize };
@@ -20,7 +22,7 @@ sf::Vector2<int> Grid::GridSize() {
 }
 
 void Grid::Update() {
-
+    
 }
 
 void Grid::DrawMouse(sf::RenderWindow& window, sf::Mouse::Button button) {
@@ -57,6 +59,6 @@ void Grid::Render(sf::RenderWindow& window) {
     }
 }
 
-std::vector<Cell> Grid::operator[] (int idx) {
+std::vector<Cell>& Grid::operator[] (int idx) {
     return grid[idx];
 }

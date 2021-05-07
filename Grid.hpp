@@ -20,6 +20,7 @@ struct Cell {
 using Matrix = std::vector<std::vector<Cell>>;
 
 struct Grid {
+    Grid();
     Grid(sf::Vector2<int> gridSize);
     
     ~Grid();
@@ -29,7 +30,7 @@ struct Grid {
     void Update();
     void Render(sf::RenderWindow&);
     
-    std::vector<Cell> operator[](int);
+    std::vector<Cell>& operator[](int);
 
 private:
     Matrix grid;

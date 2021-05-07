@@ -17,6 +17,7 @@ void Game::Update() {
     window.Update();
     float timestep = 1.0f / GetSpeed();
     if (elapsed >= timestep) {
+        water_automata.Tick();
         grid.Update();
         elapsed -= timestep;
     }
@@ -35,7 +36,6 @@ int Game::GetSpeed() {
 void Game::Render() {
     window.BeginDraw();
     grid.Render(window.GetRenderWindow());
-    water_automata.Render(window.GetRenderWindow());
     window.EndDraw();
 }
 

@@ -7,7 +7,7 @@
 
 class WaterAutomata {
 public:
-    
+    WaterAutomata();
     WaterAutomata (Grid&);
     
     // Required methods
@@ -21,5 +21,5 @@ public:
 private:
     // To do: neccessary fields
     // . . .
-    Grid grid;
+    Grid& grid;
 };
