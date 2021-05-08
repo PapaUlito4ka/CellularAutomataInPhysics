@@ -9,15 +9,16 @@ class WaterAutomata {
 public:
     WaterAutomata();
     WaterAutomata (Grid&);
-    
+
     // Required methods
     void Move(); // Movement method.
     void Tick(); // Update method.
     void Render(sf::RenderWindow& l_window);
-    
+    void WaterFall(int i, int j, Grid& grid_tmp, bool *wf);
+    void Spread(int i, int j, Grid& grid_tmp);
     // Helper metods
     // . . .
-    
+
 private:
     // To do: neccessary fields
     // . . .

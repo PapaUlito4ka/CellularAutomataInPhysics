@@ -28,6 +28,7 @@ struct Grid {
 
     sf::Vector2<int> GridSize();
     void DrawMouse(sf::RenderWindow&, sf::Mouse::Button);
+    void GridClear();
     void Update();
     void Render(sf::RenderWindow&);
 
