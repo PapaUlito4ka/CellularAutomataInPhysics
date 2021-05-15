@@ -1,2 +1,4 @@
 # CellularAutomataInPhysics
-Applications of cellular automata in physics phenomena
+Симуляция жидкости на языке C++. Здесь вы можете найти исходные файлы программы. 
+Используется дополнительная библиотека SFML. 
+Основное приложение -- main.exe
