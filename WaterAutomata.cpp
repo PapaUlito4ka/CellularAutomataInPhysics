@@ -6,8 +6,6 @@ void WaterAutomata::Move() {
     Grid grid_tmp = grid;
     for (int i = grid.GridSize().y-1; i >=0; i--) {
         for (int j = 0; j < grid.GridSize().x; j++) {
-                if(grid[i][j].type==CellType::WATER && grid[i][j].cnt>100)
-                    grid[i][j].cnt=100;
             if (grid[i][j].type == CellType::WATER ){
                     //waterfall
                     bool wf=0;
@@ -18,8 +16,6 @@ void WaterAutomata::Move() {
                     if((i != grid.GridSize().y-1 && grid[i+1][j].type!=CellType::AIR  &&
                         grid[i][j].cnt>=12 && wf==0) || (i == grid.GridSize().y-1) && wf==0  && grid[i][j].cnt>=12)
                     {
-
-
                         if(j>0 && grid[i][j-1].cnt<grid[i][j].cnt ||
                            j<grid.GridSize().x-1 && grid[i][j+1].cnt<grid[i][j].cnt)
                         {
@@ -63,8 +59,10 @@ void WaterAutomata::WaterFall(int i, int j, Grid& grid_tmp, bool *wf)
                         *wf=1;
                         grid[i][j]=grid_tmp[i][j];
                         grid[i+1][j]=grid_tmp[i+1][j];
-                        if(grid_tmp[i][j].cnt<100)
+                        if(grid_tmp[i][j].cnt<100 && grid_tmp[i][j].type==CellType::WATER)
                                 Spread(i,j,grid_tmp);
+                        //if(grid_tmp[i+1][j].cnt<100 && grid_tmp[i+1][j].type==CellType::WATER)
+                                //Spread(i+1,j,grid_tmp);
                     }
 }
 
@@ -82,15 +80,14 @@ void WaterAutomata::Spread(int i, int j, Grid& grid_tmp)
         grid[i][j]=grid_tmp[i][j];
         grid[i][j+1]=grid_tmp[i][j+1];
         grid[i][j-1]=grid_tmp[i][j-1];
-        if(i != grid.GridSize().y-1 && grid[i+1][j].cnt<100)
+        if(i != grid.GridSize().y-1)
         {
-            WaterFall(i,j-1,grid_tmp,0);
-            WaterFall(i,j+1,grid_tmp,0);
+            bool wf=0;
+            WaterFall(i,j-1,grid_tmp,&wf);
+            WaterFall(i,j+1,grid_tmp,&wf);
         }
 
-        //j-=2;
         }
-        //else
         if(j>0 && grid[i][j].cnt-grid[i][j-1].cnt>1)
         {
             int x=grid[i][j].cnt+grid[i][j-1].cnt;
@@ -99,11 +96,14 @@ void WaterAutomata::Spread(int i, int j, Grid& grid_tmp)
             grid_tmp[i][j-1].cnt=x/2;
             grid[i][j]=grid_tmp[i][j];
             grid[i][j-1]=grid_tmp[i][j-1];
-            if(i != grid.GridSize().y-1 && grid[i+1][j].cnt<100)
-                WaterFall(i,j-1,grid_tmp,0);
-            //j-=2;
+            if(i != grid.GridSize().y-1)
+            {
+                bool wf=0;
+                WaterFall(i,j-1,grid_tmp,&wf);
+            }
+
+
         }
-        //else
         if(j<grid.GridSize().x-1 && grid[i][j].cnt-grid[i][j+1].cnt>1)
         {
             grid_tmp[i][j+1].type = CellType::WATER;
@@ -112,8 +112,12 @@ void WaterAutomata::Spread(int i, int j, Grid& grid_tmp)
             grid_tmp[i][j].cnt=x-x/2;
             grid[i][j]=grid_tmp[i][j];
             grid[i][j+1]=grid_tmp[i][j+1];
-            if(i != grid.GridSize().y-1 && grid[i+1][j].cnt<100)
-                WaterFall(i,j+1,grid_tmp,0);
+            if(i != grid.GridSize().y-1)
+            {
+                bool wf=0;
+                WaterFall(i,j+1,grid_tmp, &wf);
+            }
+
         }
 
 }

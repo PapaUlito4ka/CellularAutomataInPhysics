@@ -22,7 +22,7 @@ void Window::Setup(const std::string& l_title, const sf::Vector2u& l_size) {
 void Window::Create() {
     auto style = sf::Style::Titlebar | sf::Style::Close;
     m_window.create({ m_windowSize.x, m_windowSize.y, 32 }, m_windowTitle, style);
-    static const sf::Color BACKGROUND_COLOR= sf::Color(255, 255, 255);
+    static const sf::Color BACKGROUND_COLOR= sf::Color::White;
     m_window.clear(BACKGROUND_COLOR);
 }
 
