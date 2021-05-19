@@ -14,8 +14,11 @@ public:
     void Move(); // Movement method.
     void Tick(); // Update method.
     void Render(sf::RenderWindow& l_window);
-    void WaterFall(int i, int j, Grid& grid_tmp, bool *wf);
+    void WaterFall(int i, int j, Grid& grid_tmp, bool& wf);
     void Spread(int i, int j, Grid& grid_tmp);
+    void DoubleSpread(int, int, Grid&);
+    void LeftSpread(int, int j, Grid& grid_tmp);
+    void RightSpread(int, int j, Grid& grid_tmp);
     // Helper metods
     // . . .
 

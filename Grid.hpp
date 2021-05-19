@@ -8,12 +8,21 @@ enum class CellType {
     NONE,
     AIR,
     WATER,
-    GROUND
+    GROUND,
+    BOUNDS
 };
 
 struct Cell {
+    
+    Cell();
+    
+    void setAir();
+    void setWater();
+    void setGround();
+    void setBounds();
+    
     sf::Vector2<int> coords;
-    int cnt=0;
+    int cnt;
     CellType type;
     int pressure;
 };
@@ -28,6 +37,7 @@ struct Grid {
 
     sf::Vector2<int> GridSize();
     void DrawMouse(sf::RenderWindow&, sf::Mouse::Button);
+    bool isMouseInScreen(int, int);
     void GridClear();
     void Update();
     void Render(sf::RenderWindow&);
