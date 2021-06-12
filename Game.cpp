@@ -14,13 +14,13 @@ Game::Game() :
 Game::~Game() {}
 
 void Game::Update() {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Delete)) {
         grid.GridClear();
+    }
     window.Update();
     float timestep = 1.0f / GetSpeed();
     if (elapsed >= timestep) {
         water_automata.Tick();
-        grid.Update();
         elapsed -= timestep;
     }
 }

@@ -80,7 +80,8 @@ void Grid::GridClear()
     for(int i=0;i<GridSize().y;i++)
         for(int j=0;j<GridSize().x;j++)
         {
-            grid[i][j].setAir();
+            if (grid[i][j].type != CellType::BOUNDS)
+                grid[i][j].setAir();
         }
 }
 

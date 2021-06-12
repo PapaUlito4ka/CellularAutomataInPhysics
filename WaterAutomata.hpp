@@ -19,6 +19,8 @@ public:
     void DoubleSpread(int, int, Grid&);
     void LeftSpread(int, int j, Grid& grid_tmp);
     void RightSpread(int, int j, Grid& grid_tmp);
+    int CalculateVerticalFlowValue(int remainingLiquid, Cell destination);
+    void Simulate();
     // Helper metods
     // . . .
 
@@ -26,4 +28,10 @@ private:
     // To do: neccessary fields
     // . . .
     Grid& grid;
+    const int minValue = 1;
+    const int maxValue = 100;
+    const int maxCompression = 25;
+    const int minFlow = 1;
+    const int maxFlow = 400;
+
 };
